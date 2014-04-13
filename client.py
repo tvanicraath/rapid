@@ -8,15 +8,20 @@ BUFFER_SIZE = 1024
 MESSAGE = "Hello, World!"
 def sendData(s):
 	#have to tune it according to our data then will uncomment the lines
-	#log = open ('sendLog','wr')
-	#logs = log.readlines()
-	#line = int(logs[0])
-	#dataFile = open('databaseFile','r')
-	#dataFileLines = dataFile.readlines()
-	#data = dataFileLines[line]
+	log = open ('sendLog','r+')
+	logs = log.readlines()
+	line = int(logs[0])
+	log.seek(0)
+	log.write(str(int(line)+1))
+	log.truncate()
+	log.close()
+	dataFile = open('databaseFile','r')
+	dataFileLines = dataFile.readlines()
+	data = dataFileLines[line]
 	#convert required datafiles line into a tuple and save it as a json
 	# send the json file this would make easier to feed into database at the server
-	data = ['[1, "simple", "list"]']
+	#data = "1,simple,list1"	
+	print data
 	jsonfile = open('f','w')
 	json.dump(data,jsonfile)
 	jsonfile.close()
@@ -28,7 +33,7 @@ def sendData(s):
 		s.send(data[i:min(i+1023,k)])
 	#s.send("\nDONE")
 	jsonfile.close()
-	print"File sent successfully\n>"
+	print"File sent successfully\n"
 	thread.exit()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
