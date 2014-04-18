@@ -21,11 +21,7 @@ def sendData(s):
 	#convert required datafiles line into a tuple and save it as a json
 	# send the json file this would make easier to feed into database at the server
 	#data = "1,simple,list1"	
-<<<<<<< HEAD
 	print data[:-1]
-=======
-	print data
->>>>>>> c571fbf7a80dffc46778bddbb7f2a72e12f0bfe0
 	jsonfile = open('f','w')
 	json.dump(data,jsonfile)
 	jsonfile.close()
@@ -40,11 +36,6 @@ def sendData(s):
 			exit
 	#s.send("\nDONE")
 	jsonfile.close()
-<<<<<<< HEAD
-	print"Record sent successfully\n"
-=======
-	print"File sent successfully\n"
->>>>>>> c571fbf7a80dffc46778bddbb7f2a72e12f0bfe0
 	thread.exit()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

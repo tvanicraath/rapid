@@ -10,30 +10,17 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind((TCP_IP, TCP_PORT))
 s.listen(10)
 #connect to mysql server 
-<<<<<<< HEAD
-mydb = MySQLdb.connect(host='localhost',user='rachit',passwd='dolly7',db='rapid')
+mydb = MySQLdb.connect(host='localhost',user='rachit',passwd=raw_input("paswd"),db='rapid')
 cursor = mydb.cursor()
 a = []
 def recieveData(s,conn):
 	print "Recieving Record"
-=======
-mydb = MySQLdb.connect(host='localhost',user='root',passwd='aniruddha',db='cs315')
-cursor = mydb.cursor()
-a = []
-def recieveData(s,conn):
-	print "Recieving data"
->>>>>>> c571fbf7a80dffc46778bddbb7f2a72e12f0bfe0
 	f=open('recieveFile.csv','w')
 	data = conn.recv(1024)
 	data  = str(data[1:-1])
 	a = data[:-2].split(',')
 	print a
 	q = "INSERT INTO `pollutants_daily` (id,so,no,co,temp,humidity,o3,rspm,fpm) VALUES  ("+a[1]+","+a[2]+","+a[3]+","+a[4]+","+a[5]+","+a[6]+","+a[7]+","+a[8]+","+a[9]+");"
-<<<<<<< HEAD
-#	print q
-=======
-	print q
->>>>>>> c571fbf7a80dffc46778bddbb7f2a72e12f0bfe0
 	try:
 		cursor.execute(q)
 		mydb.commit()
@@ -41,11 +28,6 @@ def recieveData(s,conn):
 		mydb.rollback()
 	f.write(data[:-2])
 
-<<<<<<< HEAD
-	print "Record recieved"
-=======
-	print "data recieved"
->>>>>>> c571fbf7a80dffc46778bddbb7f2a72e12f0bfe0
 	f.close()
 	conn.close()
 #conn, addr = s.accept()
